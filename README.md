@@ -1,8 +1,9 @@
 # dwrap
 
+`dwrap` is `Docker Wrapper`
+
 ## 概要
 
-`dwrap` is `Docker Wrapper`.
 alpineベースのDockerコンテナを動的に生成して指定のコマンドを実行します。
 
 ## 使い方
@@ -23,9 +24,9 @@ $ cat samples/jq.json | dwrap jq "."
 
 ## 内部動作
 
-1) alpineをベースイメージに指定するDockerfileを準備
-2) 指定のコマンドをapkコマンドでインストール
-3) コンテナのentrypointを指定のコマンドに設定
+1. alpineをベースイメージに指定するDockerfileを作成
+1. 指定のコマンドをapkコマンドでインストール
+1. コンテナのentrypointを指定のコマンドに設定
 
 # License
 

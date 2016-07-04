@@ -5,6 +5,7 @@ set -e
 OS="darwin linux windows"
 ARCH="amd64 386"
 
+
 echo "Ensuring code quality"
 #go vet ./...
 gofmt -w .
@@ -20,7 +21,7 @@ for GOOS in $OS; do
           binary="${binary}.exe"
         fi
         echo "Building $binary $arch"
-        GOOS=$GOOS GOARCH=$GOARCH govendor build -o $binary cmd/main.go
+        GOOS=$GOOS GOARCH=$GOARCH CGO_ENABLED=0 govendor build -o $binary cmd/main.go
         zip -r "bin/dwrap_$arch" $binary
         rm -f $binary
     done

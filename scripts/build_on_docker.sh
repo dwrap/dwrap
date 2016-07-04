@@ -2,7 +2,7 @@
 
 set -e
 
-DOCKER_IMAGE_NAME="dwarp-build"
+DOCKER_IMAGE_NAME="dwrap-build"
 DOCKER_CONTAINER_NAME="dwrap-build-container"
 
 if [[ $(docker ps -a | grep $DOCKER_CONTAINER_NAME) != "" ]]; then

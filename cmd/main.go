@@ -24,8 +24,10 @@ func main() {
 
 	//TODO repository name
 	imageRepositoryName := "dwrap-image"
-	if len(os.Args) < 1 {
-		log.Fatal("Missing arg!")
+
+	if len(os.Args) < 2 {
+		printUsage()
+		os.Exit(1)
 	}
 	cmdName := os.Args[1]
 	cmdArgs := []string{}
@@ -113,6 +115,29 @@ func main() {
 			log.Fatal(err)
 		}
 	}()
+}
+
+func printUsage() {
+	usage := `
+Run command on docker with generated with image based by the Alipne Linux.
+
+Usage:
+  dwrap [options] [COMMAND] [COMMAND ARGS...]
+
+Options:
+  No option supported in the current version.
+
+Examples:
+  # download html by curl.
+  dwrap curl -L http://example.com/index.html > index.html
+
+  # download html by wget.
+  dwrap wget -O - http://example.com/index.html > index.html
+
+  # echo json and print by jq command.
+  echo any.json | dwrap jq "."
+`
+	fmt.Println(usage)
 }
 
 func buildImage(ctx context.Context, cl *client.Client, imageFullName string, cmdName string) {
